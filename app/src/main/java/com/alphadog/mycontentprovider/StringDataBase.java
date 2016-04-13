@@ -42,7 +42,7 @@ public class StringDataBase extends SQLiteOpenHelper {
 
         long id = getWritableDatabase().insert(TABLE_NAME, "", values);
         if (id <= 0) {
-            throw new SQLException("Failed to add an image");
+            throw new SQLException("Failed to add String");
         }
 
         return id;
