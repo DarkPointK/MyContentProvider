@@ -50,6 +50,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
 
+
+        update.setEnabled(false);
+        del.setEnabled(false);
+
         et.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -101,6 +105,9 @@ public class MainActivity extends AppCompatActivity {
 //        条件只传id，因为在StringDataBase中有完整处理where语句
         int uri = getContentResolver().delete(CONTENT_URI, "" + id, null);
         Toast.makeText(getBaseContext(), "删除成功" + id, LENGTH_SHORT).show();
+
+        update.setEnabled(false);
+        del.setEnabled(false);
         fresh = true;
     }
 
@@ -115,14 +122,16 @@ public class MainActivity extends AppCompatActivity {
             fresh = true;
         } else {
             Toast.makeText(this, "没做任何更改！", LENGTH_SHORT).show();
+            fresh = false;
         }
     }
 
     private void query() {
         s = et.getText().toString();
-        if (!s.equals("") && fresh) {
+        if (fresh&& !s.equals("") ) {
             s = "str = '" + et.getText().toString() + "'";
             Log.i("正在搜索的s为", s);
+
             Cursor cursor = getContentResolver().query(CONTENT_URI, null, s, null, null);
 
 //                CursorLoader cl=new CursorLoader(getBaseContext(),CONTENT_URI,null,null,sa2,null);
@@ -145,6 +154,9 @@ public class MainActivity extends AppCompatActivity {
             Log.i("c", c.getString(0) + "   " + c.getString(1));
             tv.setText(c.getString(0));
             id = c.getInt(0);
+
+
+            Toast.makeText(this, "正在查找:"+c.getString(1)+" = "+id, LENGTH_SHORT).show();
 
             fresh = false;
         } else {
