@@ -140,6 +140,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void display() {
         if (c != null && c.moveToNext()) {
+            update.setEnabled(true);
+            del.setEnabled(true);
             Log.i("c", c.getString(0) + "   " + c.getString(1));
             tv.setText(c.getString(0));
             id = c.getInt(0);
