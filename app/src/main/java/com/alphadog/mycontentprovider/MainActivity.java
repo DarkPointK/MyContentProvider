@@ -146,6 +146,9 @@ public class MainActivity extends AppCompatActivity {
 
             fresh = false;
         } else {
+            tv.setText("");
+            update.setEnabled(false);
+            del.setEnabled(false);
             Toast.makeText(this, "搜索结束，队列将刷新并从头开始", LENGTH_SHORT).show();
             fresh = true;
 //            c.moveToFirst();
