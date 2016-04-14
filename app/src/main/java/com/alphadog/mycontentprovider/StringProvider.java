@@ -40,7 +40,7 @@ public class StringProvider extends ContentProvider {
     public String getType(Uri uri) {
         switch (um.match(uri)) {
             case STR:
-                return "vnd.android.cursor.item/vnd.com.alphadog.mycontentprovider.string";
+                return "vnd.android.cursor.item/vnd.com.alphadog.mycontentprovider.string/#";
             case STRS:
                 return "vnd.android.cursor.dir/vnd.com.alphadog.mycontentprovider.string";
         }
